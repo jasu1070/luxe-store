@@ -10,8 +10,8 @@ const SORT_OPTIONS = [
   { value: 'newest', label: 'Newest First' },
 ];
 
-export default function Shop({ onAddToCart, onNavigate }) {
-  const [selectedCats, setSelectedCats] = useState([]);
+export default function Shop({ onAddToCart, onNavigate, initialCategory = null }) {
+  const [selectedCats, setSelectedCats] = useState(initialCategory ? [initialCategory] : []);
   const [sort, setSort] = useState('featured');
   const [maxPrice, setMaxPrice] = useState(500);
 

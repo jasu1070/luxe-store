@@ -193,6 +193,7 @@ export default function Cart({ cartItems, onUpdateQty, onRemove, onNavigate }) {
               <button
                 className="cart-checkout-btn"
                 style={{ marginBottom: 'var(--space-1)' }}
+                onClick={() => onNavigate('checkout')}
               >
                 Proceed to Checkout →
               </button>

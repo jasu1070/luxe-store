@@ -3,10 +3,10 @@ import React, { useState, useEffect } from 'react';
 const NAV_LINKS = [
   { label: 'Home', page: 'home' },
   { label: 'Shop', page: 'shop' },
-  { label: 'Categories', page: 'shop' },
+  { label: 'Categories', page: 'categories' },
   { label: 'Deals', page: 'shop' },
-  { label: 'About', page: 'home' },
-  { label: 'Contact', page: 'home' },
+  { label: 'About', page: 'about' },
+  { label: 'Contact', page: 'contact' },
 ];
 
 export default function Navbar({ currentPage, onNavigate, cartCount, onCartOpen, onSearchOpen }) {
@@ -71,7 +71,12 @@ export default function Navbar({ currentPage, onNavigate, cartCount, onCartOpen,
                 </svg>
               </button>
 
-              <button className="navbar-icon-btn" aria-label="User account" title="Account">
+              <button 
+                className="navbar-icon-btn" 
+                onClick={() => onNavigate('account')}
+                aria-label="User account" 
+                title="Account"
+              >
                 <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                   <circle cx="12" cy="7" r="4"/>

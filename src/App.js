@@ -7,6 +7,12 @@ import Home from './pages/Home';
 import Shop from './pages/Shop';
 import ProductDetails from './pages/ProductDetails';
 import Cart from './pages/Cart';
+import Categories from './pages/Categories';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import InfoPage from './pages/InfoPage';
+import Account from './pages/Account';
+import Checkout from './pages/Checkout';
 import './styles/global.css';
 import './styles/layout.css';
 import './styles/components.css';
@@ -29,6 +35,8 @@ function Toast({ message, onHide }) {
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home');
   const [currentProductId, setCurrentProductId] = useState(null);
+  const [infoType, setInfoType] = useState('faq');
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [cartItems, setCartItems] = useState([]);
   const [cartOpen, setCartOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -52,9 +60,17 @@ export default function App() {
   }, [currentPage, currentProductId]);
 
   // Navigation handler
-  const handleNavigate = useCallback((page, productId = null) => {
+  const handleNavigate = useCallback((page, id = null) => {
     setCurrentPage(page);
-    setCurrentProductId(productId);
+    if (page === 'product') {
+      setCurrentProductId(id);
+    } else if (page === 'info') {
+      setInfoType(id || 'faq');
+    } else if (page === 'shop' && id) {
+      setSelectedCategory(id);
+    } else if (page === 'shop') {
+      setSelectedCategory(null);
+    }
     setCartOpen(false);
     setSearchOpen(false);
   }, []);
@@ -88,14 +104,20 @@ export default function App() {
   }, []);
 
   const cartCount = cartItems.reduce((sum, item) => sum + item.qty, 0);
+  const cartSubtotal = cartItems.reduce((sum, item) => sum + item.price * item.qty, 0);
+  const cartTax = cartSubtotal * 0.08;
+  const cartShipping = cartSubtotal >= 50 ? 0 : 9.99;
+  const cartTotal = cartSubtotal + cartTax + cartShipping;
 
   const renderPage = () => {
     switch (currentPage) {
       case 'shop':
         return (
           <Shop
+            key={selectedCategory || 'all'}
             onAddToCart={handleAddToCart}
             onNavigate={handleNavigate}
+            initialCategory={selectedCategory}
           />
         );
       case 'product':
@@ -112,6 +134,24 @@ export default function App() {
             cartItems={cartItems}
             onUpdateQty={handleUpdateQty}
             onRemove={handleRemoveFromCart}
+            onNavigate={handleNavigate}
+          />
+        );
+      case 'categories':
+        return <Categories onNavigate={handleNavigate} />;
+      case 'about':
+        return <About />;
+      case 'contact':
+        return <Contact />;
+      case 'info':
+        return <InfoPage type={infoType} />;
+      case 'account':
+        return <Account />;
+      case 'checkout':
+        return (
+          <Checkout
+            cartItems={cartItems}
+            total={cartTotal}
             onNavigate={handleNavigate}
           />
         );

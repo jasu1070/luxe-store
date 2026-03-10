@@ -1,7 +1,21 @@
 import React, { useState } from 'react';
 
-const SHOP_LINKS = ['New Arrivals', 'Best Sellers', 'Sale Items', 'Electronics', 'Fashion', 'Home & Living'];
-const SUPPORT_LINKS = ['Help Center', 'Track Order', 'Returns & Exchanges', 'Size Guide', 'Contact Us', 'FAQs'];
+const SHOP_LINKS = [
+  { label: 'New Arrivals', page: 'shop' },
+  { label: 'Best Sellers', page: 'shop' },
+  { label: 'Sale Items', page: 'shop' },
+  { label: 'Electronics', page: 'shop' },
+  { label: 'Fashion', page: 'shop' },
+  { label: 'Home & Living', page: 'shop' }
+];
+const SUPPORT_LINKS = [
+  { label: 'Help Center', page: 'info', slug: 'faq' },
+  { label: 'Track Order', page: 'info', slug: 'faq' },
+  { label: 'Returns & Exchanges', page: 'info', slug: 'returns' },
+  { label: 'Size Guide', page: 'info', slug: 'faq' },
+  { label: 'Contact Us', page: 'contact' },
+  { label: 'FAQs', page: 'info', slug: 'faq' }
+];
 const SOCIALS = ['𝕏', 'f', 'in', '📷', '▶'];
 
 export default function Footer({ onNavigate }) {
@@ -36,8 +50,8 @@ export default function Footer({ onNavigate }) {
             <h5>Shop</h5>
             <nav className="footer-links" aria-label="Shop links">
               {SHOP_LINKS.map(link => (
-                <button key={link} onClick={() => onNavigate('shop')}>
-                  {link}
+                <button key={link.label} onClick={() => onNavigate(link.page)}>
+                  {link.label}
                 </button>
               ))}
             </nav>
@@ -48,8 +62,8 @@ export default function Footer({ onNavigate }) {
             <h5>Support</h5>
             <nav className="footer-links" aria-label="Support links">
               {SUPPORT_LINKS.map(link => (
-                <button key={link} onClick={() => {}}>
-                  {link}
+                <button key={link.label} onClick={() => onNavigate(link.page, link.slug)}>
+                  {link.label}
                 </button>
               ))}
             </nav>
@@ -101,9 +115,9 @@ export default function Footer({ onNavigate }) {
             © 2025 LUXE Store. All rights reserved.
           </p>
           <nav className="footer-bottom-links" aria-label="Legal links">
-            <button>Privacy Policy</button>
-            <button>Terms of Service</button>
-            <button>Cookie Policy</button>
+            <button onClick={() => onNavigate('info', 'privacy')}>Privacy Policy</button>
+            <button onClick={() => onNavigate('info', 'terms')}>Terms of Service</button>
+            <button onClick={() => onNavigate('info', 'returns')}>Cookie Policy</button>
           </nav>
         </div>
       </div>

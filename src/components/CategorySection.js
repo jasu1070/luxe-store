@@ -5,10 +5,10 @@ export function CategoryCard({ category, onNavigate }) {
     <article
       className="category-card"
       style={{ background: category.gradient }}
-      onClick={() => onNavigate('shop')}
+      onClick={() => onNavigate('shop', category.name)}
       role="button"
       tabIndex={0}
-      onKeyDown={e => e.key === 'Enter' && onNavigate('shop')}
+      onKeyDown={e => e.key === 'Enter' && onNavigate('shop', category.name)}
       aria-label={`Browse ${category.name}`}
     >
       <div className="category-card-bg">{category.emoji}</div>

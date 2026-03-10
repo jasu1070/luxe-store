@@ -107,7 +107,7 @@ export default function CartDrawer({ isOpen, onClose, cartItems, onUpdateQty, on
 
             <button
               className="cart-checkout-btn"
-              onClick={() => { onClose(); onNavigate('cart'); }}
+              onClick={() => { onClose(); onNavigate('checkout'); }}
             >
               Proceed to Checkout →
             </button>
