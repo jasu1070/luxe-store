@@ -1,0 +1,129 @@
+/* ============================================
+   LUXE STORE — LAYOUT STYLES
+   ============================================ */
+
+/* ---- APP LAYOUT ---- */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-main {
+  flex: 1;
+  padding-top: 72px; /* navbar height */
+}
+
+/* ---- PAGE LAYOUTS ---- */
+.page-header {
+  background: var(--color-primary);
+  color: white;
+  padding: var(--space-10) 0 var(--space-8);
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 70% 50%, rgba(37,99,235,0.3) 0%, transparent 60%);
+}
+
+.page-header .container { position: relative; z-index: 1; }
+
+.page-header h1 {
+  color: white;
+  margin-bottom: var(--space-1);
+}
+
+.page-header p {
+  color: rgba(255,255,255,0.7);
+  font-size: var(--text-lg);
+}
+
+/* ---- GRID LAYOUTS ---- */
+.grid-products {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-3);
+}
+
+.grid-categories {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-2);
+}
+
+.grid-trust {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+}
+
+.grid-footer {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+  gap: var(--space-6);
+}
+
+/* ---- SHOP LAYOUT ---- */
+.shop-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.shop-sidebar {
+  position: sticky;
+  top: 90px;
+}
+
+/* ---- PRODUCT DETAIL LAYOUT ---- */
+.product-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  align-items: start;
+}
+
+/* ---- CART LAYOUT ---- */
+.cart-layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+/* ============================================
+   RESPONSIVE LAYOUT
+   ============================================ */
+
+@media (max-width: 1200px) {
+  .grid-products { grid-template-columns: repeat(3, 1fr); }
+  .grid-categories { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (max-width: 1024px) {
+  .grid-products { grid-template-columns: repeat(2, 1fr); }
+  .grid-categories { grid-template-columns: repeat(3, 1fr); }
+  .grid-trust { grid-template-columns: repeat(2, 1fr); }
+  .grid-footer { grid-template-columns: repeat(2, 1fr); gap: var(--space-5); }
+  .shop-layout { grid-template-columns: 1fr; }
+  .shop-sidebar { position: static; }
+  .cart-layout { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .grid-products { grid-template-columns: repeat(2, 1fr); gap: var(--space-2); }
+  .grid-categories { grid-template-columns: repeat(2, 1fr); }
+  .product-detail-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .grid-products { grid-template-columns: 1fr; }
+  .grid-categories { grid-template-columns: repeat(2, 1fr); }
+  .grid-trust { grid-template-columns: repeat(2, 1fr); gap: var(--space-2); }
+  .grid-footer { grid-template-columns: 1fr; }
+}
