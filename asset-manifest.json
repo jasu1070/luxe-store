@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/luxe-store/static/css/main.b1e0e7db.css",
+    "main.js": "/luxe-store/static/js/main.1468eeed.js",
+    "index.html": "/luxe-store/index.html",
+    "main.b1e0e7db.css.map": "/luxe-store/static/css/main.b1e0e7db.css.map",
+    "main.1468eeed.js.map": "/luxe-store/static/js/main.1468eeed.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b1e0e7db.css",
+    "static/js/main.1468eeed.js"
+  ]
+}
