@@ -58,7 +58,7 @@ export default function PromoBanner({ onNavigate }) {
 
           <button
             className="btn btn-primary btn-lg"
-            onClick={() => onNavigate('shop')}
+            onClick={() => onNavigate('shop', { status: 'sale' })}
           >
             Shop Deals
             <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">

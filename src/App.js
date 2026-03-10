@@ -36,7 +36,7 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState('home');
   const [currentProductId, setCurrentProductId] = useState(null);
   const [infoType, setInfoType] = useState('faq');
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [initialFilter, setInitialFilter] = useState(null);
   const [cartItems, setCartItems] = useState([]);
   const [cartOpen, setCartOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -67,9 +67,9 @@ export default function App() {
     } else if (page === 'info') {
       setInfoType(id || 'faq');
     } else if (page === 'shop' && id) {
-      setSelectedCategory(id);
+      setInitialFilter(typeof id === 'string' ? { category: id } : id);
     } else if (page === 'shop') {
-      setSelectedCategory(null);
+      setInitialFilter(null);
     }
     setCartOpen(false);
     setSearchOpen(false);
@@ -114,10 +114,10 @@ export default function App() {
       case 'shop':
         return (
           <Shop
-            key={selectedCategory || 'all'}
+            key={JSON.stringify(initialFilter) || 'all'}
             onAddToCart={handleAddToCart}
             onNavigate={handleNavigate}
-            initialCategory={selectedCategory}
+            initialFilter={initialFilter}
           />
         );
       case 'product':

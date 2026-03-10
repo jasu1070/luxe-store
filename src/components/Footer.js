@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
 const SHOP_LINKS = [
-  { label: 'New Arrivals', page: 'shop' },
-  { label: 'Best Sellers', page: 'shop' },
-  { label: 'Sale Items', page: 'shop' },
-  { label: 'Electronics', page: 'shop' },
-  { label: 'Fashion', page: 'shop' },
-  { label: 'Home & Living', page: 'shop' }
+  { label: 'New Arrivals', page: 'shop', id: { status: 'new' } },
+  { label: 'Best Sellers', page: 'shop', id: { status: 'hot' } },
+  { label: 'Sale Items', page: 'shop', id: { status: 'sale' } },
+  { label: 'Electronics', page: 'shop', id: 'Electronics' },
+  { label: 'Fashion', page: 'shop', id: 'Fashion' },
+  { label: 'Home & Living', page: 'shop', id: 'Home' }
 ];
 const SUPPORT_LINKS = [
   { label: 'Help Center', page: 'info', slug: 'faq' },
@@ -50,7 +50,7 @@ export default function Footer({ onNavigate }) {
             <h5>Shop</h5>
             <nav className="footer-links" aria-label="Shop links">
               {SHOP_LINKS.map(link => (
-                <button key={link.label} onClick={() => onNavigate(link.page)}>
+                <button key={link.label} onClick={() => onNavigate(link.page, link.id)}>
                   {link.label}
                 </button>
               ))}

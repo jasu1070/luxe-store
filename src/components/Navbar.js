@@ -4,7 +4,7 @@ const NAV_LINKS = [
   { label: 'Home', page: 'home' },
   { label: 'Shop', page: 'shop' },
   { label: 'Categories', page: 'categories' },
-  { label: 'Deals', page: 'shop' },
+  { label: 'Deals', page: 'shop', id: { status: 'sale' } },
   { label: 'About', page: 'about' },
   { label: 'Contact', page: 'contact' },
 ];
@@ -41,7 +41,7 @@ export default function Navbar({ currentPage, onNavigate, cartCount, onCartOpen,
                 <button
                   key={link.label}
                   className={`navbar-nav-link ${currentPage === link.page ? 'active' : ''}`}
-                  onClick={() => onNavigate(link.page)}
+                  onClick={() => onNavigate(link.page, link.id)}
                   style={{
                     fontSize: 'var(--text-sm)',
                     fontWeight: 500,
@@ -122,7 +122,7 @@ export default function Navbar({ currentPage, onNavigate, cartCount, onCartOpen,
           {NAV_LINKS.map(link => (
             <button
               key={link.label}
-              onClick={() => { onNavigate(link.page); setMenuOpen(false); }}
+              onClick={() => { onNavigate(link.page, link.id); setMenuOpen(false); }}
               style={{
                 display: 'block',
                 width: '100%',

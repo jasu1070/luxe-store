@@ -10,10 +10,11 @@ const SORT_OPTIONS = [
   { value: 'newest', label: 'Newest First' },
 ];
 
-export default function Shop({ onAddToCart, onNavigate, initialCategory = null }) {
-  const [selectedCats, setSelectedCats] = useState(initialCategory ? [initialCategory] : []);
+export default function Shop({ onAddToCart, onNavigate, initialFilter = null }) {
+  const [selectedCats, setSelectedCats] = useState(initialFilter?.category ? [initialFilter.category] : []);
   const [sort, setSort] = useState('featured');
-  const [maxPrice, setMaxPrice] = useState(500);
+  const [maxPrice, setMaxPrice] = useState(600);
+  const [activeStatus] = useState(initialFilter?.status || null);
 
   const toggleCat = (cat) => {
     setSelectedCats(prev =>
@@ -24,13 +25,19 @@ export default function Shop({ onAddToCart, onNavigate, initialCategory = null }
   const filtered = useMemo(() => {
     let list = [...PRODUCTS].filter(p => p.price <= maxPrice);
     if (selectedCats.length) list = list.filter(p => selectedCats.includes(p.category));
+    
+    if (activeStatus === 'sale') list = list.filter(p => p.badgeType === 'sale' || p.originalPrice > p.price);
+    if (activeStatus === 'new') list = list.filter(p => p.badgeType === 'new');
+    if (activeStatus === 'hot') list = list.filter(p => p.badgeType === 'hot');
+
     switch (sort) {
       case 'price-asc': return list.sort((a, b) => a.price - b.price);
       case 'price-desc': return list.sort((a, b) => b.price - a.price);
       case 'rating': return list.sort((a, b) => b.rating - a.rating);
+      case 'newest': return list.sort((a, b) => b.id - a.id);
       default: return list;
     }
-  }, [selectedCats, sort, maxPrice]);
+  }, [selectedCats, sort, maxPrice, activeStatus]);
 
   return (
     <main id="main-content">
@@ -40,8 +47,12 @@ export default function Shop({ onAddToCart, onNavigate, initialCategory = null }
           <div className="section-label" style={{ background: 'rgba(37,99,235,0.2)', color: '#93C5FD' }}>
             Collections
           </div>
-          <h1 style={{ color: 'white', marginTop: 8 }}>Shop All Products</h1>
-          <p>Discover our complete collection of premium products</p>
+          <h1 style={{ color: 'white', marginTop: 8 }}>
+            {activeStatus ? `${activeStatus.charAt(0).toUpperCase() + activeStatus.slice(1)} Items` : 'Shop All Products'}
+          </h1>
+          <p>
+            {activeStatus === 'sale' ? 'Premium products at unbeatable prices' : 'Discover our complete collection of premium products'}
+          </p>
         </div>
       </div>
 
