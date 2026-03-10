@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/luxe-store/static/css/main.b1e0e7db.css",
-    "main.js": "/luxe-store/static/js/main.a512e7e7.js",
-    "index.html": "/luxe-store/index.html",
-    "main.b1e0e7db.css.map": "/luxe-store/static/css/main.b1e0e7db.css.map",
-    "main.a512e7e7.js.map": "/luxe-store/static/js/main.a512e7e7.js.map"
+    "main.css": "./static/css/main.b1e0e7db.css",
+    "main.js": "./static/js/main.a512e7e7.js",
+    "index.html": "./index.html",
+    "main.b1e0e7db.css.map": "./static/css/main.b1e0e7db.css.map",
+    "main.a512e7e7.js.map": "./static/js/main.a512e7e7.js.map"
   },
   "entrypoints": [
     "static/css/main.b1e0e7db.css",
